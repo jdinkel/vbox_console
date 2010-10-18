@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+# Copyright 2010, James Dinkel
+
+require "bundler/setup"
+Bundler.require(:default)
+#require "vbox_console"
+include HighLine::SystemExtensions
+
+def listening_ports
+  
+  raw_data = `netstat -lnA inet | grep tcp`
+
+  vbox_vnc_match_raw_data = `ps aux | grep vbox`
+  # or maybe use pgrep
+end
+
+# MAIN #######################################################################
+
+choose do |menu|
+  menu.select_by = :index
+  menu.prompt = "What do you want to do?"
+  
+  menu.choice(:run) { say "look at you go!" }
+  menu.choice(:stay) { say "...long pause... Well this is awkward." }
+end
+
+print "Hit anything to continue."
+get_character
+print "\n\n"
